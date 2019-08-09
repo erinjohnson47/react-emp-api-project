@@ -8,14 +8,14 @@ While your last project taught you how to get started with writing a fullstack a
 
 You will build a react front end to consume a given API
 
-1. You will use the following [API](https://git.generalassemb.ly/WebDev-Connected-Classroom/react-weekend-employee-api)
+1. Link to this [API](https://github.com/erinjohnson47/react-weekend-employee-api) repository.
 2. Front-end React code that updates the UI and makes CRUD requests to your API back end.
 
 ---
 
 ### Requirements
 
-> ### *In case you were thinking about it, do not use REDUX for this project*
+> ### *Do not use REDUX for this project*
 
 
 #### Front-End Requirements
