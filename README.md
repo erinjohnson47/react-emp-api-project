@@ -1,68 +1,92 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Mini Project: React-Express-API
 
-## Available Scripts
+# ![GA Logo](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) 
 
-In the project directory, you can run:
+### Overview
 
-### `npm start`
+While your last project taught you how to get started with writing a fullstack application in JavaScript using Express, Mongoose, and Node, this project will have you building another full stack application, but this time with a React front-end.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You will build a react front end to consume a given API
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+1. You will use the following [API](https://git.generalassemb.ly/WebDev-Connected-Classroom/react-weekend-employee-api)
+2. Front-end React code that updates the UI and makes CRUD requests to your API back end.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Requirements
 
-### `npm run build`
+> ### *In case you were thinking about it, do not use REDUX for this project*
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#### Front-End Requirements
+  - React front end that consumes your backend API.
+  - It must communicate with the back end API RESTfully to Create, Read, Update, and Destroy resources, using fetch.
+  - Add User Login and Registration
+  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### App Organization
 
-### `npm run eject`
+You should build your application in completely separate repositories, one for your React front-end and another for your Node-Express-Mongoose API.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Process
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* **Keep user stories small** and well-defined. Remember: user stories focus on what a user *needs*, not what development tasks need accomplishing.
+* **Write pseudocode** before you write actual code. Thinking through the logic first helps.
+* **Don't hesitate** to write throwaway code to solve short-term problems.
+* **Read the docs** for whatever technologies / frameworks / APIs you plan to use. (See ["RTFM"](https://en.wikipedia.org/wiki/RTFM))
+* **Use Git Branches** 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Code
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* **Keep your code DRY** and build your API RESTful.
+* **Be consistent** with your code style. (Pick single or double quotes, either put a space between `) {` or don't).
+* **Commit early; commit often.** Don't be afraid to break something because you can always go back in time to a previous version (so long as you're committing often).
+* **Name things appropriately.  Comment as necessary.** Do your naming conventions make sense? Would another developer be able to look at your app and understand what everything is? (See ["self-documenting"](https://en.wikipedia.org/wiki/Self-documenting)).  Even if it's obvious, comments can help to explain the intent -- the what and why.  This allows the next developer (which could even be you in a few months) to understand the purpose and decide what can be adjusted to achieve the same goal.
+* **Ensure it is well-formatted.** Are you indenting consistently? Can we find the start and end of every div, curly brace, etc?  Organizing the hierarchy is key to understanding.
 
-### Code Splitting
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Bonuses
 
-### Making a Progressive Web App
+You should only attempt these bonuses if and only if you've satisfied project requirements.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+* Implement pagination in your API (you could do this with query parameters or URL parameters)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+#### Deployment
+  - Your API must be deployed to Heroku and your front-end must be deployed to Heroku
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+    > You MUST deploy your back-end and front-end separately. This assignment is to make a front end and separate back end using totally decoupled architecture. This will make it far easier to debug your deployed applications and manage your deployments. One way to get yourself in trouble in this project would be to attempt to follow a tutorial for MERN stack that is NOT decoupled. Do not do this.
+    
+For React you can use the [heroku buildpack](https://elements.heroku.com/buildpacks/mars/create-react-app-buildpack), just do the quick start guide!
 
-### `npm run build` fails to minify
+For express use the same resources as last project.
+    
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Easier
+
+* Use semantic-ui to style your app. - fronted
+
+* JSON web tokens (JWT) for authentication - backend & fronted
+
+### Harder
+
+* Add a third party api - backend or fronted
+* Use the [multer](https://www.npmjs.com/package/multer) module to be able to add a profile pic to your express app
+* you'll have to do some research and create a profile page for your user - backend and frontend
+
+* OAUTH [oauth module](https://github.com/jaredhanson/oauth2orize) - backend
+
+* Use [react-strap](https://reactstrap.github.io/) to style your app - frontend
+
+* Create cool animations - frontend
