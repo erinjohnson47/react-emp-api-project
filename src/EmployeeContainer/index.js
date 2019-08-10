@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import EmployeeList from '../EmployeeList'
 import CreateEmployee from '../CreateEmployee';
+import EmployeeList from '../EmployeeList'
+
 
 class EmployeeContainer extends Component {
     state = {
@@ -31,7 +32,7 @@ class EmployeeContainer extends Component {
             console.log(createEmployeeRes.data, '<-createdEmpsRes')
 
             this.setState({
-                employee: [...this.state.employees, createEmployeeRes.data]
+                employees: [...this.state.employees, createEmployeeRes.data]
             });
 
         } catch (err) {
@@ -63,8 +64,8 @@ class EmployeeContainer extends Component {
         console.log(this.state, '<-this.state in render')
         return (
             <div>
-                <EmployeeList />
-                <CreateEmployee addEmployee={this.createEmployee}/>
+            <CreateEmployee addEmployee={this.createEmployee}/>
+            <EmployeeList employees={this.state.employees}/> 
             </div>
         )
     }
