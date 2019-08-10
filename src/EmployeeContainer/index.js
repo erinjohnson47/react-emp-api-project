@@ -27,6 +27,13 @@ class EmployeeContainer extends Component {
             }
             console.log(createEmployee, '<-createEmployee fetch');
 
+            const createEmployeeRes = await createEmployee.json();
+            console.log(createEmployeeRes.data, '<-createdEmpsRes')
+
+            this.setState({
+                employee: [...this.state.employees, createEmployeeRes.data]
+            });
+
         } catch (err) {
             console.log(err, "err in createEmployee")
             return err
@@ -53,6 +60,7 @@ class EmployeeContainer extends Component {
     }
 
     render() {
+        console.log(this.state, '<-this.state in render')
         return (
             <div>
                 <EmployeeList />
