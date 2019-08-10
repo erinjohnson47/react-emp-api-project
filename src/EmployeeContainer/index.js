@@ -13,24 +13,28 @@ class EmployeeContainer extends Component {
 
     createEmployee = async (employee, e) => {
         e.preventDefault();
-        // try {
-        //     const createEmployee = await fetch('http://localhost:9000/api/v1/employees', {
-        //         method: 'POST',
-        //         body: JSON.stringify(employee),
-        //         headers: {
-        //             'Content-Type' : 'application/json'
-        //         }
-        //     })
-        //     console.log(createEmployee, '<-createEmployee fetch');
+        console.log(employee, e, '<-inside of addEmp')
+        try {
+            const createEmployee = await fetch('http://localhost:9000/api/v1/employees', {
+                method: 'POST',
+                body: JSON.stringify(employee),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+            if(createEmployee.status !==200) {
+                throw Error('resource not found')
+            }
+            console.log(createEmployee, '<-createEmployee fetch');
 
-        // } catch (err) {
-        //     console.log(err, "err in addEmployee")
-        //     return err
-        // }
+        } catch (err) {
+            console.log(err, "err in createEmployee")
+            return err
+        }
     }
     getEmployees = async () => {
         try {
-            const resGetEmployees = await fetch('http://localhost:3000/api/v1/employees', {
+            const resGetEmployees = await fetch('http://localhost:9000/api/v1/employees', {
                 method: 'GET'
             })
             console.log(resGetEmployees, '<-resGetEmps')
@@ -52,7 +56,7 @@ class EmployeeContainer extends Component {
         return (
             <div>
                 <EmployeeList />
-                <CreateEmployee />
+                <CreateEmployee addEmployee={this.createEmployee}/>
             </div>
         )
     }
