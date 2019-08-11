@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Employees = ({employees}) => {
-    console.log(employees, '<-props in employeelist')
-    const employeeList = employees.map((employee) => {
+const Employees = (props) => {
+    console.log(props, '<-props in employeelist')
+    const employeeList = props.employees.map((employee) => {
         return (
             <div key={employee._id}>
                 <span>Name: {employee.name}</span><br/>
@@ -10,7 +10,7 @@ const Employees = ({employees}) => {
                 <span>DOB: {employee.birthDate}</span><br/>
                 <span>Department: {employee.department}</span><br/>
                 <span>Salary: {employee.annualSalary}</span><br/>
-                <button>Edit Employee Information</button>
+                <button onClick={props.showModal.bind(null, employee)}>Edit Employee Information</button>
                 <button>Delete Employee</button><br/>
             </div>
         )

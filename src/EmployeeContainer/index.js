@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import CreateEmployee from '../CreateEmployee';
 import EmployeeList from '../EmployeeList'
+import EditEmployee from '../EditEmployee'
 
 
 class EmployeeContainer extends Component {
     state = {
-        employees: []
+        employees: [],
+        showEditModal: false,
+        employeeToEdit: {
+            _id: null,
+            name: '',
+            position: '',
+            birthDate: '',
+            department: '',
+            annualSalary: ''
+        }
     }
 
     componentDidMount() {
@@ -59,13 +69,51 @@ class EmployeeContainer extends Component {
             return err
         }
     }
+    editEmployeeAndCloseModal = async (e) => {
+        e.preventDefault();
+        try {
+            const editRequest = await fetch(`http://localhost:9000/api/v1/employees/${this.state.employeeToEdit._id}`, {
+                method: 'PUT',
+                credentials: 'include',
+                body: JSON.stringify(this.state.movieToEdit),
+                headers: {
+                'Content-Type': 'application/json'
+                }
+            })
+
+        } catch (err) {
+            console.log(err, '<-err in catch closeAndEdit')
+            return err
+        }
+
+    }
+    handleFormChange = (e) => {
+        console.log(e, '<-e in handleFormChange')
+        this.setState({
+            employeeToEdit: {
+                ...this.state.employeeToEdit,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    showModal = (employee) => {
+        console.log(employee, '<-empId in show modal')
+        this.setState({
+            showEditModal: !this.state.showEditModal,
+            employeeToEdit: employee
+        })
+    }
 
     render() {
         console.log(this.state, '<-this.state in render')
         return (
             <div>
             <CreateEmployee addEmployee={this.createEmployee}/>
-            <EmployeeList employees={this.state.employees}/> 
+            <EmployeeList employees={this.state.employees} showModal={this.showModal}/>
+            {this.state.showEditModal 
+            ? <EditEmployee employeeToEdit={this.state.employeeToEdit} handleFormChange={this.handleFormChange}/>
+            : null
+            } 
             </div>
         )
     }

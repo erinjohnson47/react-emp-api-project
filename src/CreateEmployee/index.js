@@ -21,7 +21,7 @@ class CreateEmployee extends Component {
                 <input type="text" name="position"  onChange={this.addEmployee} value={this.state.position}/>
                 </label><br/>
                 <label htmlFor=''>Employee DOB:
-                <input type="date" name="birthDate"  onChange={this.addEmployee} value={this.state.birthDate} required/>
+                <input type="text" name="birthDate"  onChange={this.addEmployee} value={this.state.birthDate} required/>
                 </label><br/>
                 <label htmlFor=''>Employee Department:
                 <input type="text" name="department"  onChange={this.addEmployee} value={this.state.department}/>
