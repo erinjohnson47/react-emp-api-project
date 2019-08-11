@@ -69,26 +69,7 @@ class EmployeeContainer extends Component {
             return err
         }
     }
-    editEmployeeAndCloseModal = async (e) => {
-        e.preventDefault();
-        try {
-            const editRequest = await fetch(`http://localhost:9000/api/v1/employees/${this.state.employeeToEdit._id}`, {
-                method: 'PUT',
-                credentials: 'include',
-                body: JSON.stringify(this.state.movieToEdit),
-                headers: {
-                'Content-Type': 'application/json'
-                }
-            })
-
-        } catch (err) {
-            console.log(err, '<-err in catch closeAndEdit')
-            return err
-        }
-
-    }
     handleFormChange = (e) => {
-        console.log(e, '<-e in handleFormChange')
         this.setState({
             employeeToEdit: {
                 ...this.state.employeeToEdit,
@@ -103,15 +84,66 @@ class EmployeeContainer extends Component {
             employeeToEdit: employee
         })
     }
-
+    editEmployeeAndCloseModal = async (e) => {
+        e.preventDefault();
+        console.log(this.state.employeeToEdit, '<this.state.empployeeToEdit')
+        try {
+            const editRequest = await fetch(`http://localhost:9000/api/v1/employees/${this.state.employeeToEdit._id}`, {
+                method: 'PUT',
+                credentials: 'include',
+                body: JSON.stringify(this.state.employeeToEdit),
+                headers: {
+                'Content-Type': 'application/json'
+                }
+            })
+            if(editRequest.status !== 200) {
+                throw Error('editRequest not working')
+            }
+            const editResponse = await editRequest.json();
+            const editedEmployeeArray = this.state.employees.map((employee) => {
+                if(employee._id === editResponse.data._id) {
+                    employee = editResponse.data
+                }
+                return employee
+            })
+            this.setState({
+                employees: editedEmployeeArray,
+                showEditModal: false
+            })        
+        } catch (err) {
+            console.log(err, '<-err in catch closeAndEdit')
+            return err
+        }
+    }
+    deleteEmployee = async (id) => {
+        console.log(id, '<-deleteEmployeeId')
+        try {
+            const deleteEmployee = await fetch(`http://localhost:9000/api/v1/employees/${id}`, {
+                method: 'DELETE'
+            });
+            if(deleteEmployee.status !== 200) {
+                throw Error('Error on delete')
+            }
+            // const deleteEmployeeJSON = 
+            await deleteEmployee.json();
+            this.setState({
+                employees: this.state.employees.filter((employee) => employee._id !== id)
+            })
+        } catch (err) {
+            console.log(err);
+            return err        
+        }
+    }
     render() {
-        console.log(this.state, '<-this.state in render')
         return (
             <div>
             <CreateEmployee addEmployee={this.createEmployee}/>
-            <EmployeeList employees={this.state.employees} showModal={this.showModal}/>
+            <EmployeeList employees={this.state.employees} showModal={this.showModal} deleteEmployee={this.deleteEmployee}/>
             {this.state.showEditModal 
-            ? <EditEmployee employeeToEdit={this.state.employeeToEdit} handleFormChange={this.handleFormChange}/>
+            ? <EditEmployee 
+            editEmployeeAndCloseModal={this.editEmployeeAndCloseModal}
+            employeeToEdit={this.state.employeeToEdit} 
+            handleFormChange={this.handleFormChange}/>
             : null
             } 
             </div>
